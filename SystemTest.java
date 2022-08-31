@@ -25,6 +25,9 @@ public class SystemTest {
       System.out.println("[4] Add a new activity.");
       System.out.println("[5] Add a new user.");
       System.out.println("[6] Update an user.");
+      System.out.println("[7] Confer an user information.");
+      System.out.println("[8] Confer a project information.");
+      System.out.println("[9] Confer an activity information.");
 
       option = input.nextInt();
 
@@ -49,6 +52,76 @@ public class SystemTest {
           break;
         case 6:
           updateUser(usersCreated);
+        case 7:
+          userInformation(usersCreated);
+          break;
+        case 8:
+          projectInformation(projectsCreated);
+          break;
+        case 9:
+          activityInformation(activitiesCreated);
+          break;
+      }
+    }
+  }
+
+  public static void userInformation(ArrayList<User> usersCreated) {
+    Scanner input = new Scanner(System.in);
+
+    String username;
+
+    System.out.println("Enter the User Username you want to consult: ");
+
+    username = input.nextLine();
+
+    for (User user: usersCreated) {
+      if (user.getUsername().equals(username)) {
+        System.out.printf("Information available: %s %s%n", user.getFirstName(), user.getLastName());
+      }
+      else {
+        System.out.println("Sorry, this user was not found.");
+      }
+    }
+  }
+
+  public static void projectInformation(ArrayList<Project> projectsCreated) {
+    Scanner input = new Scanner(System.in);
+
+    String id;
+
+    System.out.println("Enter the Project Id you want to consult: ");
+
+    id = input.nextLine();
+
+    for (Project project : projectsCreated) {
+      if (project.getId().equals(id)) {
+        System.out.printf("Description: %s%nStarted At: %s%nEnds At: %s%nCoordinator: %s%nIntegrators: %s%nActivities: %s%nSchoolar Amount: %.2f%nDuration: %s%n",
+        project.getDescription(), project.getStartAt(), project.getEndAt(), project.getCoordinator(), 
+        project.getIntegrants(), project.getActivities(), project.getSchoolarAmount(), project.getDuringAt());
+      }
+      else {
+        System.out.println("Sorry, this project was not found.");
+      }
+    }
+  }
+
+  public static void activityInformation(ArrayList<Activities> activitiesCreated) {
+    Scanner input = new Scanner(System.in);
+
+    String id;
+
+    System.out.println("Enter the Activity Id you want to consult: ");
+
+    id = input.nextLine();
+
+    for (Activities activity : activitiesCreated) {
+      if(activity.getId().equals(id)) {
+        System.out.printf("Description: %s%nStarted At:%s%nEnds At: %s%nLeader: %s%nIntegrants: %s%nInstructions: %s%n", 
+        activity.getDescription(), activity.getStartAt(), activity.getEndAt(), 
+        activity.getLeader(), activity.getIntegrants(), activity.getInstructions());
+      }
+      else {
+        System.out.println("Sorry, this activity was not found.");
       }
     }
   }
