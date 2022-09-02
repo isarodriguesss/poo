@@ -9,10 +9,12 @@ public class SystemTest {
     ArrayList<Activities> activitiesCreated = new ArrayList<Activities>();
     ArrayList<User> usersCreated = new ArrayList<User>();
 
-    menu(projectsCreated, activitiesCreated, usersCreated);
+    Account account = new Account();
+
+    menu(account, projectsCreated, activitiesCreated, usersCreated);
   }
 
-  public static void menu(ArrayList<Project> projectsCreated, ArrayList<Activities> activitiesCreated, ArrayList<User> usersCreated) {
+  public static void menu(Account account, ArrayList<Project> projectsCreated, ArrayList<Activities> activitiesCreated, ArrayList<User> usersCreated) {
     Scanner input = new Scanner(System.in);
     int option = 13;
 
@@ -36,7 +38,7 @@ public class SystemTest {
           System.out.println("\nThank you, see you next time!");
           break;
         case 1:
-          updateProject(projectsCreated);
+          updateProject(account, projectsCreated);
           break;
         case 2:
           updateActivity(activitiesCreated);
@@ -267,11 +269,12 @@ public class SystemTest {
     System.out.printf("\nThe project with %s as Id has been updated successfully.", id);
   }
 
-  public static void addNewProject(ArrayList<Project> projectsCreated) {
+  public static void addNewProject(Account account, ArrayList<Project> projectsCreated) {
     Scanner input = new Scanner(System.in);
 
-    String id, description, startAt, endAt, coordinator, duringAt, integrants, activities;
+    String id, description, startAt, endAt, coordinator, duringAt, activities;
     double schoolarAmount;
+    ArrayList<User> integrants;
 
     System.out.println("\nEnter an Id for the project: ");
     id = input.nextLine();
@@ -288,8 +291,19 @@ public class SystemTest {
     System.out.println("Enter the coordinators of the project: ");
     coordinator = input.nextLine();
 
-    System.out.println("Enter the integrants: ");
-    integrants = input.nextLine();
+    System.out.println("Enter the usernames to add integrants: ");
+    int option = 12;
+    while(option!=0) {
+      System.out.println("[0] Exit.");
+      System.out.println("[1] Add an username.");
+      option = input.nextLine();
+      System.out.println("Username: ");
+      String username = input.nextLine();
+      for (User user : account.getUsers()) {
+        if (user.getUsername().equals(username)) {
+          integrants.add(username);
+      }
+    }
 
     System.out.println("Enter the activities: ");
     activities = input.nextLine();
