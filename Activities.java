@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Activities {
 
   private String id;
@@ -5,10 +7,10 @@ public class Activities {
   private String startAt;
   private String endAt;
   private String leader;
-  private String integrants;
+  private ArrayList<User> integrants;
   private String instructions;
 
-  public Activities(String id, String description, String startAt, String endAt, String leader, String integrants, String instructions) {
+  public Activities(String id, String description, String startAt, String endAt, String leader, ArrayList<User> integrants, String instructions) {
     this.id = id;
     this.description = description;
     this.startAt = startAt;
@@ -46,8 +48,15 @@ public class Activities {
     return leader;
   }
 
-  public String getIntegrants() {
+  public ArrayList<User> getIntegrants() {
     return integrants;
+  }
+
+  public String getIntegrantsUsername() {
+    for (User user : integrants) {
+      return user.getUsername();
+    }
+    return null;
   }
 
   public String getInstructions() {
@@ -62,7 +71,7 @@ public class Activities {
     this.leader = leader;
   }
 
-  public void setIntegrants(String integrants) {
+  public void setIntegrants(ArrayList<User> integrants) {
     this.integrants = integrants;
   }
 

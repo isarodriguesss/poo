@@ -8,12 +8,12 @@ public class Project {
   private String endAt;
   private String coordinator;
   private ArrayList<User> integrants;
-  private String activities;
+  private ArrayList<Activities> activities;
   private double schoolarAmount;
   private String duringAt;
 
   public Project(String id, String description, String startAt, String endAt, String coordinator, 
-  ArrayList<User> integrants, String activities, double schoolarAmount, String duringAt) {
+  ArrayList<User> integrants, ArrayList<Activities> activities, double schoolarAmount, String duringAt) {
     this.id = id;
     this.description = description;
     this.startAt = startAt;
@@ -69,15 +69,22 @@ public class Project {
     return integrants;
   }
 
+  public String getIntegrantsUsername() {
+    for (User user : integrants) {
+      return user.getUsername();
+    }
+    return null;
+  }
+
   public void setIntegrants(ArrayList<User> integrants) {
     this.integrants = integrants;
   }
 
-  public String getActivities() {
+  public ArrayList<Activities> getActivities() {
     return activities;
   }
 
-  public void setActivities(String activities) {
+  public void setActivities(ArrayList<Activities> activities) {
     this.activities = activities;
   }
 
