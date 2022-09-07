@@ -17,6 +17,6 @@ public class Reseacher extends User{
 
   @Override
   public String toString() {
-    return "Type of user: Reseacher, Subject: " + getSubject() + super.toString();
+    return "\nType of user: Reseacher, Subject: " + getSubject() + super.toString();
   }
 }

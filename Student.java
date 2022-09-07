@@ -1,22 +1,22 @@
 public class Student extends User{
 
-  private String course;
+  private String degree;
   
-  public Student(String firstName, String lastName, String username, String password, String course) {
+  public Student(String firstName, String lastName, String username, String password, String degree) {
     super(firstName, lastName, username, password);
-    this.course = course;
+    this.degree = degree;
   }
 
-  public String getCourse() {
-    return course;
+  public String getDegree() {
+    return degree;
   }
 
-  public void setcourse(String course) {
-    this.course = course;
+  public void setDegree(String degree) {
+    this.degree = degree;
   }
 
   @Override
   public String toString() {
-    return "Type of user: Student, Major degree: " + getCourse() + super.toString();
+    return "\nType of user: Student, Degree: " + getDegree() + ", " + super.toString();
   }
 }

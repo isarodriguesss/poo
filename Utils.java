@@ -1,16 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SystemTest {
+public class Utils {
 
-  public static void main(String[] args) {
-
-    Account account = new Account();
-
-    menu(account);
-  }
-
-  public static void menu(Account account) {
+  public void menu(Account account) {
     Scanner input = new Scanner(System.in);
     int option = 13;
 
@@ -36,7 +29,7 @@ public class SystemTest {
     }
   }
 
-  public static void system(Account account, User user) {
+  public void system(Account account, User user) {
     Scanner input = new Scanner(System.in);
     int option = 13;
 
@@ -121,7 +114,7 @@ public class SystemTest {
     }
   }
 
-  public static void removeProject(Account account) {
+  public void removeProject(Account account) {
     Scanner input = new Scanner(System.in);
     String id;
     Project wantedProject = null;
@@ -139,7 +132,7 @@ public class SystemTest {
     else System.out.println("This project was found.");
   }
 
-  public static void removeActivity(Account account) {
+  public void removeActivity(Account account) {
     Scanner input = new Scanner(System.in);
     String id;
     Activities wantedActivity = null;
@@ -158,7 +151,7 @@ public class SystemTest {
     else System.out.println("This activity was found.");
   }
 
-  public static void removeUser(Account account) {
+  public void removeUser(Account account) {
     Scanner input = new Scanner(System.in);
     String username, password;
     User wantedUser = null;
@@ -180,7 +173,7 @@ public class SystemTest {
     else System.out.println("Sorry, something goes wrong.");
   }
 
-  public static void report(Account account) {
+  public void report(Account account) {
     System.out.println("\nProjects: ");
     for (Project project : account.getProjects())
       System.out.println(project.getAllInfo());
@@ -189,7 +182,7 @@ public class SystemTest {
       System.out.println(activity.getAllInfo());
   }
 
-  public static void showPayment(Account account) {
+  public void showPayment(Account account) {
     Scanner input = new Scanner(System.in);
     String id;
     Project currentProject = null;
@@ -202,7 +195,7 @@ public class SystemTest {
     System.out.println(currentProject.getPayment());
   }
 
-  public static void payment(Account account) {
+  public void payment(Account account) {
     Scanner input = new Scanner(System.in);
     String id, date;
     int option;
@@ -233,7 +226,7 @@ public class SystemTest {
 
   }
 
-  public static void checkStatus(Account account) {
+  public void checkStatus(Account account) {
     Scanner input = new Scanner(System.in);
     String id;
     String projectStatus = null;
@@ -247,7 +240,7 @@ public class SystemTest {
     System.out.printf("%nStatus: %s%n", projectStatus);
   }
 
-  public static void status(Account account, User user) {
+  public void status(Account account, User user) {
     Scanner input = new Scanner(System.in);
     String id;
     int option;
@@ -298,7 +291,7 @@ public class SystemTest {
     }
   }
 
-  public static void login(Account account) {
+  public void login(Account account) {
     Scanner input = new Scanner(System.in);
 
     String firstName, lastName, username, password;
@@ -334,7 +327,7 @@ public class SystemTest {
     else System.out.println("\nYour not registered.");
   }
 
-  public static void resetPassword(User user) {
+  public void resetPassword(User user) {
     Scanner input = new Scanner(System.in);
     
     System.out.println("Enter your new password: ");
@@ -343,7 +336,7 @@ public class SystemTest {
     System.out.println("\nYour password has been updated successfully.\n");
   }
 
-  public static void userInformation(Account account) {
+  public void userInformation(Account account) {
     Scanner input = new Scanner(System.in);
 
     String username;
@@ -355,11 +348,11 @@ public class SystemTest {
     for (User user: account.getUsers())
       if (user.getUsername().equals(username)) wantedUser = user;
     
-    if (wantedUser != null) System.out.printf("%nInformation available: %s%n", wantedUser);
+    if (wantedUser != null) System.out.printf("%nInformations available: %s%n", wantedUser);
     else System.out.println("\nSorry, this user was not found.\n");
   }
 
-  public static void projectInformation(Account account) {
+  public void projectInformation(Account account) {
     Scanner input = new Scanner(System.in);
 
     String id;
@@ -375,7 +368,7 @@ public class SystemTest {
     else System.out.println("\nSorry, this project was not found.\n");
   }
 
-  public static void activityInformation(Account account) {
+  public void activityInformation(Account account) {
     Scanner input = new Scanner(System.in);
 
     String id;
@@ -391,7 +384,7 @@ public class SystemTest {
     else System.out.println("\nSorry, this activity was not found.\n");
   }
 
-  public static void addNewUser(Account account) {
+  public void addNewUser(Account account) {
     Scanner input = new Scanner(System.in);
 
     String firstName, lastName, username, password, projectId, activityId;
@@ -413,15 +406,28 @@ public class SystemTest {
     password = input.nextLine();
 
     System.out.println("Enter what type of user fits you: ");
-    System.out.println("[1] Student.\n[2] Professor.\n[3] Reseacher: ");
+    System.out.println("[1] Student.\n[2] Professor.\n[3] Reseacher\n[4] Profissional: ");
     int optionUserType = input.nextInt();
     input.nextLine();
 
     switch (optionUserType) {
       case 1:
-        System.out.println("What is your major degree? ");
-        String course = input.nextLine();
-        user = new Student(firstName, lastName, username, password, course);
+        String degree = null;
+        int degreeOption;
+        System.out.println("Select your degree level:\n[1] Undergraduate Degree.\n[2] Master Degree.\n[3] PhD.");
+        degreeOption = input.nextInt();
+        switch(degreeOption) {
+          case 1:
+            degree = "Undergraduate Degree";
+            break;
+          case 2:
+            degree = "Master Degree";
+            break;
+          case 3:
+            degree = "PhD";
+            break;
+        }
+        user = new Student(firstName, lastName, username, password, degree);
         break;
       case 2:
         System.out.println("Enter subject you lesson: ");
@@ -432,6 +438,24 @@ public class SystemTest {
         System.out.println("Enter the subject of you reseach: ");
         String subjectR = input.nextLine();
         user = new Reseacher(firstName, lastName, username, password, subjectR);
+        break;
+      case 4:
+        int typeOption;
+        String type = null;
+        System.out.println("Enter the type of profissional you are:\n[1] Developer.\n[2] Tester.\n[3] Analyst.");
+        typeOption = input.nextInt();
+        switch(typeOption) {
+          case 1:
+            type = "Developer";
+            break;
+          case 2:
+            type = "Tester";
+            break;
+          case 3:
+            type = "Analyst";
+            break;
+        }
+        user = new Profissional(firstName, lastName, username, password, type);
         break;
     }
 
@@ -491,7 +515,7 @@ public class SystemTest {
     System.out.println("\nYou have been registered successfully!");
   }
 
-  public static void updateUser(Account account) {
+  public void updateUser(Account account) {
     Scanner input = new Scanner(System.in);
 
     String firstName, lastName, username, password, projectId, activityId;
@@ -526,29 +550,6 @@ public class SystemTest {
       System.out.println("Enter your password: ");
       password = input.nextLine();
       currentUser.setPassword(password);
-
-      /* System.out.println("Enter what type of user fits you: ");
-      System.out.println("[1] Student.\n[2] Professor.\n[3] Reseacher: ");
-      int optionUserType = input.nextInt();
-      input.nextLine();
-
-      switch (optionUserType) {
-        case 1:
-          System.out.println("What is your major degree? ");
-          String course = input.nextLine();
-          currentUser = new Student(firstName, lastName, username, password, course);
-          break;
-        case 2:
-          System.out.println("Enter subject you lesson: ");
-          String subject = input.nextLine();
-          currentUser = new Professor(firstName, lastName, username, password, subject);
-          break;
-        case 3:
-          System.out.println("Enter the subject of you reseach: ");
-          String subjectR = input.nextLine();
-          currentUser = new Reseacher(firstName, lastName, username, password, subjectR);
-          break;
-      } */
 
       System.out.println("Enter projects you are envolved: ");
       int option = 12;
@@ -606,7 +607,7 @@ public class SystemTest {
     else System.out.println("\nSorry, something is wrong. Please try again.");
   }
 
-  public static void addNewActivity(Account account) {
+  public void addNewActivity(Account account) {
     Scanner input = new Scanner(System.in);
 
     String id, description, startAt, endAt, leader, instructions, username;
@@ -664,7 +665,7 @@ public class SystemTest {
     System.out.printf("%nCongratulations, the activity has been created successfully!%n");
   }
 
-  public static void updateActivity(Account account) {
+  public void updateActivity(Account account) {
     Scanner input = new Scanner(System.in);
 
     String id, description, startAt, endAt, leader, instructions, username;
@@ -733,7 +734,7 @@ public class SystemTest {
     System.out.printf("\nThe project with %s as Id has been updated successfully.", id);
   }
 
-  public static void addNewProject(Account account) {
+  public void addNewProject(Account account) {
     Scanner input = new Scanner(System.in);
 
     String id, description, startAt, endAt, coordinatorUsername, duringAt, username, activityId;
@@ -831,25 +832,25 @@ public class SystemTest {
     System.out.printf("%nCongratulations, the project has been created successfully!%n");
   }
 
-  public static Project findProject(String projectId, Account account) {
+  public Project findProject(String projectId, Account account) {
     for (Project project : account.getProjects())
       if (project.getId().equals(projectId)) return project;
     return null;
   }
 
-  public static User findUser(String username, Account account) {
+  public User findUser(String username, Account account) {
     for (User user : account.getUsers()) 
       if (user.getUsername().equals(username)) return user;
     return null;
   }
 
-  public static Activities findActivity(String activityId, Account account) {
+  public Activities findActivity(String activityId, Account account) {
     for (Activities activity : account.getActivities())
       if (activity.getId().equals(activityId)) return activity;
     return null;
   }
 
-  public static void updateProject(Account account) {
+  public void updateProject(Account account) {
     Scanner input = new Scanner(System.in);
 
     String id, description, startAt, endAt, coordinatorUsername, duringAt, username, activityId;

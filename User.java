@@ -67,6 +67,6 @@ public class User {
   }
 
   public String toString() {
-    return "\nName: " + this.getFirstName() + " " + this.getLastName() + ", Projects Envolved: " + getProjectsEnvolved() + ", Activities Envolved: " + getActivitiesEnvolved();
+    return "Name: " + this.getFirstName() + " " + this.getLastName() + ", Projects Envolved: " + getProjectsEnvolved() + ", Activities Envolved: " + getActivitiesEnvolved();
   }
 }
