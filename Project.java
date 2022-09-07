@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.lang.reflect.Field;
 
 public class Project {
 
@@ -6,23 +7,49 @@ public class Project {
   private String description;
   private String startAt;
   private String endAt;
-  private String coordinator;
-  private ArrayList<User> integrants;
+  private User coordinator;
+  private ArrayList<User> members;
   private ArrayList<Activities> activities;
   private double schoolarAmount;
   private String duringAt;
+  private String status;
+  private ArrayList<PaymentData> payment;
 
-  public Project(String id, String description, String startAt, String endAt, String coordinator, 
-  ArrayList<User> integrants, ArrayList<Activities> activities, double schoolarAmount, String duringAt) {
+  public Project(String id, String description, String startAt, String endAt, User coordinator, 
+  ArrayList<User> members, ArrayList<Activities> activities, double schoolarAmount, String duringAt) {
     this.id = id;
     this.description = description;
     this.startAt = startAt;
     this.endAt = endAt;
     this.coordinator = coordinator;
-    this.integrants = integrants;
+    this.members = members;
     this.activities = activities;
     this.schoolarAmount = schoolarAmount;
     this.duringAt = duringAt;
+    this.status = "Em processo de criacao";
+    this.payment = new ArrayList<PaymentData>();
+  }
+
+  public void setPayment(ArrayList<PaymentData> payment) {
+    this.payment = payment;
+  }
+
+  public ArrayList<PaymentData> getPayment() {
+    return payment;
+  }
+
+  public void makePayment(String date) {
+    PaymentData payment = new PaymentData(this.getSchoolarAmount(), date);
+
+    this.getPayment().add(payment);
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
   public String getId() {
@@ -57,27 +84,27 @@ public class Project {
     this.endAt = endAt;
   }
 
-  public String getCoordinator() {
+  public User getCoordinator() {
     return coordinator;
   }
 
-  public void setCoordinator(String coordinator) {
+  public void setCoordinator(User coordinator) {
     this.coordinator = coordinator;
   }
 
-  public ArrayList<User> getIntegrants() {
-    return integrants;
+  public ArrayList<User> getMembers() {
+    return members;
   }
 
-  public String getIntegrantsUsername() {
-    for (User user : integrants) {
+  public String getMembersUsername() {
+    for (User user : members) {
       return user.getUsername();
     }
     return null;
   }
 
-  public void setIntegrants(ArrayList<User> integrants) {
-    this.integrants = integrants;
+  public void setMembers(ArrayList<User> members) {
+    this.members = members;
   }
 
   public ArrayList<Activities> getActivities() {
@@ -102,6 +129,23 @@ public class Project {
 
   public void setDuringAt(String duringAt) {
     this.duringAt = duringAt;
+  }
+
+  public boolean checkNull() {
+    for (Field f : getClass().getDeclaredFields()) 
+      if (f == null) return true;
+
+    return false;
+  }
+
+  public String toString() {
+    return "Id: " + this.getId() + "Description: " + this.getDescription();
+  }
+
+  public String getAllInfo() {
+    return "\nId: " + this.getId() + "\nDescription: " + this.getDescription() + "\nStarted At: " + this.getStartAt() + "\nEnded At: " +
+    this.getEndAt() + "\nCoordinator: " + this.getCoordinator() + "\nMembers: " + this.getMembers() + "\nActivities: " + 
+    this.getActivities() + "\nSchoolar Amount: " + this.getSchoolarAmount() + "\nDuration: " + this.getDuringAt();
   }
 
 }

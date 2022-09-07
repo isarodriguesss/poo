@@ -1,8 +1,8 @@
-public class Professor extends User{
+public class Reseacher extends User{
 
   private String subject;
   
-  public Professor(String firstName, String lastName, String username, String password, String subject) {
+  public Reseacher(String firstName, String lastName, String username, String password, String subject) {
     super(firstName, lastName, username, password);
     this.subject = subject;
   }
@@ -17,6 +17,6 @@ public class Professor extends User{
 
   @Override
   public String toString() {
-    return "Type of user: Professor, Subject: " + getSubject() + super.toString();
+    return "Type of user: Reseacher, Subject: " + getSubject() + super.toString();
   }
 }

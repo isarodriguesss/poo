@@ -35,4 +35,5 @@ public class Account {
   public void setActivities(ArrayList<Activities> activities) {
     this.activities = activities;
   }
+
 } 
