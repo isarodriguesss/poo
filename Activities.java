@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Activities {
 
   private String id;
@@ -5,16 +7,16 @@ public class Activities {
   private String startAt;
   private String endAt;
   private String leader;
-  private String integrants;
+  private ArrayList<User> members;
   private String instructions;
 
-  public Activities(String id, String description, String startAt, String endAt, String leader, String integrants, String instructions) {
+  public Activities(String id, String description, String startAt, String endAt, String leader, ArrayList<User> members, String instructions) {
     this.id = id;
     this.description = description;
     this.startAt = startAt;
     this.endAt = endAt;
     this.leader = leader;
-    this.integrants = integrants;
+    this.members = members;
     this.instructions = instructions;
   }
 
@@ -46,8 +48,15 @@ public class Activities {
     return leader;
   }
 
-  public String getIntegrants() {
-    return integrants;
+  public ArrayList<User> getMembers() {
+    return members;
+  }
+
+  public String getMembersUsername() {
+    for (User user : members) {
+      return user.getUsername();
+    }
+    return null;
   }
 
   public String getInstructions() {
@@ -62,8 +71,8 @@ public class Activities {
     this.leader = leader;
   }
 
-  public void setIntegrants(String integrants) {
-    this.integrants = integrants;
+  public void setMembers(ArrayList<User> members) {
+    this.members = members;
   }
 
   public void setEndAt(String endAt) {
@@ -72,5 +81,14 @@ public class Activities {
 
   public void setStartAt(String startAt) {
     this.startAt = startAt;
+  }
+
+  public String toString() {
+    return "Id: " + this.getId() + ", Description: " + this.getDescription();
+  }
+
+  public String getAllInfo() {
+    return "\nId: " + this.getId() + "\nStarted At: " + this.getStartAt() + "\nEnd At: " + this.getEndAt() + "\nLeader: " + this.getLeader() + 
+    "\nMembers: " + this.getMembers() + "\nInstructions: " + this.getInstructions();
   }
 }
