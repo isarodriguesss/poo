@@ -17,6 +17,7 @@ public class Student extends User{
 
   @Override
   public String toString() {
-    return "\nType of user: Student, Degree: " + getDegree() + ", " + super.toString();
+    return "\nName: " + getFirstName() + " " + getLastName() + ", Projects Envolved: " + getProjectsEnvolved() + ", Activities Envolved: " + getActivitiesEnvolved() +
+    ", Type of user: Student, Degree: " + getDegree();
   }
 }

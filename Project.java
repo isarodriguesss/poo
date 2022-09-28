@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.lang.reflect.Field;
 
-public class Project {
+public class Project implements Payable {
 
   private String id;
   private String description;
@@ -115,6 +115,7 @@ public class Project {
     this.activities = activities;
   }
 
+  @Override
   public double getSchoolarAmount() {
     return schoolarAmount;
   }

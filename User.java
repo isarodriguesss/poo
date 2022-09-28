@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class User {
+public abstract class User {
 
   private String firstName;
   private String lastName;
@@ -66,7 +66,5 @@ public class User {
     return activitiesEnvolved;
   }
 
-  public String toString() {
-    return "Name: " + this.getFirstName() + " " + this.getLastName() + ", Projects Envolved: " + getProjectsEnvolved() + ", Activities Envolved: " + getActivitiesEnvolved();
-  }
+  public abstract String toString();
 }

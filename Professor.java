@@ -17,6 +17,7 @@ public class Professor extends User{
 
   @Override
   public String toString() {
-    return "\nType of user: Professor, Subject: " + getSubject() + super.toString();
+    return "\nName: " + getFirstName() + " " + getLastName() + ", Projects Envolved: " + getProjectsEnvolved() + ", Activities Envolved: " + getActivitiesEnvolved() +
+    ", Type of user: Professor, Subject: " + getSubject();
   }
 }
