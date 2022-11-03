@@ -10,7 +10,7 @@ Aplicado conceitos de exceptions (terceira versão).
 
 Analisado os code smells (apenas análise).
 
-# Design patterns e soluções de smells
+## Design patterns e soluções de smells
 
 Smells simples resolvidos:
 
