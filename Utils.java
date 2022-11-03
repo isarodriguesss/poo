@@ -1,21 +1,23 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Utils {
 
   public void menu(Account account) {
     Scanner input = new Scanner(System.in);
     int option = 13;
+    try {
+      while (option != 0) {
+        System.out.println("\nChoose an option: ");
+        System.out.println("[0] Exit.");
+        System.out.println("[1] Login.");
+        System.out.println("[2] Register.");
 
-    while (option != 0) {
-      System.out.println("\nChoose an option: ");
-      System.out.println("[0] Exit.");
-      System.out.println("[1] Login.");
-      System.out.println("[2] Register.");
+        option = input.nextInt();
 
-      option = input.nextInt();
-
-      switch (option) {
+        
+        switch (option) {
         case 0:
           System.out.println("\nThank you, see you next time!");
           break;
@@ -25,7 +27,15 @@ public class Utils {
         case 2:
           addNewUser(account);
           break;
+        default:
+          System.out.println("\n\nInvalid option!!\n\n");
+          break;
+        }
       }
+    }
+    catch (InputMismatchException e) {
+      System.out.println("\n\nInvalid option!!\n\n");
+      menu(account);
     }
   }
 
@@ -33,84 +43,93 @@ public class Utils {
     Scanner input = new Scanner(System.in);
     int option = 13;
 
-    while (option != 0) {
-      System.out.println("\nChoose an option: ");
-      System.out.println("[0] Exit.");
-      System.out.println("[1] Add a new project.");
-      System.out.println("[2] Add a new activity.");
-      System.out.println("[3] Add a new user.");
-      System.out.println("[4] Update a project.");
-      System.out.println("[5] Update an activity.");
-      System.out.println("[6] Update an user.");
-      System.out.println("[7] Remove a project.");
-      System.out.println("[8] Remove an activity.");
-      System.out.println("[9] Remove an user.");
-      System.out.println("[10] Confer an user information.");
-      System.out.println("[11] Confer a project information.");
-      System.out.println("[12] Confer an activity information.");
-      System.out.println("[13] Set the status of a project.");
-      System.out.println("[14] Check a project status.");
-      System.out.println("[15] Lauch a new Schoolarship payment.");
-      System.out.println("[16] Show schoolarship payments.");
-      System.out.println("[17] Projects and activities report.");
+    try{
+      while (option != 0) {
+        System.out.println("\nChoose an option: ");
+        System.out.println("[0] Exit.");
+        System.out.println("[1] Add a new project.");
+        System.out.println("[2] Add a new activity.");
+        System.out.println("[3] Add a new user.");
+        System.out.println("[4] Update a project.");
+        System.out.println("[5] Update an activity.");
+        System.out.println("[6] Update an user.");
+        System.out.println("[7] Remove a project.");
+        System.out.println("[8] Remove an activity.");
+        System.out.println("[9] Remove an user.");
+        System.out.println("[10] Confer an user information.");
+        System.out.println("[11] Confer a project information.");
+        System.out.println("[12] Confer an activity information.");
+        System.out.println("[13] Set the status of a project.");
+        System.out.println("[14] Check a project status.");
+        System.out.println("[15] Lauch a new Schoolarship payment.");
+        System.out.println("[16] Show schoolarship payments.");
+        System.out.println("[17] Projects and activities report.");
 
-      option = input.nextInt();
+        option = input.nextInt();
 
-      switch (option) {
-        case 0:
-          break;
-        case 1:
-          addNewProject(account);
-          break;
-        case 2:
-          addNewActivity(account);
-          break;
-        case 3:
-          addNewUser(account);
-          break;
-        case 4:
-          updateProject(account);
-          break;
-        case 5:
-          updateActivity(account);
-          break;
-        case 6:
-          updateUser(account);
-          break;
-        case 7:
-          removeProject(account);
-          break;
-        case 8:
-          removeActivity(account);
-          break;
-        case 9:
-          removeUser(account);
-          break;
-        case 10:
-          userInformation(account);
-          break;
-        case 11:
-          projectInformation(account);
-          break;
-        case 12:
-          activityInformation(account);
-          break;
-        case 13:
-          status(account, user);
-          break;
-        case 14:
-          checkStatus(account);
-          break;
-        case 15:
-          payment(account);
-          break;
-        case 16:
-          showPayment(account);
-          break;
-        case 17:
-          report(account);
-          break;
+        switch (option) {
+          case 0:
+            break;
+          case 1:
+            addNewProject(account);
+            break;
+          case 2:
+            addNewActivity(account);
+            break;
+          case 3:
+            addNewUser(account);
+            break;
+          case 4:
+            updateProject(account);
+            break;
+          case 5:
+            updateActivity(account);
+            break;
+          case 6:
+            updateUser(account);
+            break;
+          case 7:
+            removeProject(account);
+            break;
+          case 8:
+            removeActivity(account);
+            break;
+          case 9:
+            removeUser(account);
+            break;
+          case 10:
+            userInformation(account);
+            break;
+          case 11:
+            projectInformation(account);
+            break;
+          case 12:
+            activityInformation(account);
+            break;
+          case 13:
+            status(account, user);
+            break;
+          case 14:
+            checkStatus(account);
+            break;
+          case 15:
+            payment(account);
+            break;
+          case 16:
+            showPayment(account);
+            break;
+          case 17:
+            report(account);
+            break;
+          default:
+            System.out.println("\n\nInvalid option!!\n\n");
+            break;
+        }
       }
+    }
+    catch (InputMismatchException e) {
+      System.out.println("\n\nInvalid option!!\n\n");
+      system(account, user);
     }
   }
 
@@ -122,14 +141,16 @@ public class Utils {
     System.out.println("Enter project's Id you want to remove: ");
     id = input.nextLine();
 
-    for (Project project : account.getProjects())
-      if (project.getId().equals(id)) wantedProject = project;
-    
-    if (wantedProject != null) {
+    try {
+      for (Project project : account.getProjects())
+        if (project.getId().equals(id)) wantedProject = project;
+
       account.getProjects().remove(wantedProject);
       System.out.println("\nProject removed successfully!\n");
     }
-    else System.out.println("This project was found.");
+    catch(NullPointerException e) {
+      System.out.println("This project was found.");
+    }
   }
 
   public void removeActivity(Account account) {
@@ -140,15 +161,16 @@ public class Utils {
     System.out.println("Enter activity's Id you want to remove: ");
     id = input.nextLine();
 
-    for (Activities activity : account.getActivities())
-      if (activity.getId().equals(id)) wantedActivity = activity;
-    
-    if (wantedActivity != null) {
+    try {
+      for (Activities activity : account.getActivities())
+        if (activity.getId().equals(id)) wantedActivity = activity;
+      
       account.getActivities().remove(wantedActivity);
       System.out.println("\nActivity removed successfully!\n");
     }
-    
-    else System.out.println("This activity was found.");
+    catch (NullPointerException e) {
+      System.out.println("This activity was found.");
+    }
   }
 
   public void removeUser(Account account) {
@@ -189,10 +211,15 @@ public class Utils {
 
     System.out.println("Enter the project's Id you want to show payment: ");
     id = input.nextLine();
-    for (Project project : account.getProjects()) 
-      if (project.getId().equals(id)) currentProject = project;
+    try {
+      for (Project project : account.getProjects()) 
+        if (project.getId().equals(id)) currentProject = project;
+      System.out.println(currentProject.getPayment());
+    }
+    catch(NullPointerException e) {
+      System.out.println("\nNothing was found\n");
+    }
     
-    System.out.println(currentProject.getPayment());
   }
 
   public void payment(Account account) {
@@ -203,26 +230,44 @@ public class Utils {
 
     System.out.println("Enter the project's  Id you want to make a payment: ");
     id  = input.nextLine();
-    for (Project project : account.getProjects()) 
-      if (project.getId().equals(id)) currentProject = project;
-    
-    System.out.printf("The schoolarship amount of this project is %.2f. ", currentProject.getSchoolarAmount());
-    System.out.printf("Do you want to register a payment? %n[1] Yes.%n[2] No.%n");
-    option = input.nextInt();
-    input.nextLine();
 
-    switch(option) {
-      case 1:
-        System.out.println("Enter the date of the payment: ");
-        date = input.nextLine();
+    try {
+      for (Project project : account.getProjects()) 
+        if (project.getId().equals(id)) currentProject = project;
 
-        currentProject.makePayment(date);
+      System.out.printf("The schoolarship amount of this project is %.2f. ", currentProject.getSchoolarAmount());
+      System.out.printf("Do you want to register a payment? %n[1] Yes.%n[2] No.%n");
+      option = input.nextInt();
+      input.nextLine();
+      try {
+        switch(option) {
+        case 1:
+          System.out.println("Enter the date of the payment: ");
+          date = input.nextLine();
 
-        System.out.println("\nPayment registered successfully.");
-        break;
-      case 2:
-        break;
+          currentProject.makePayment(date);
+
+          System.out.println("\nPayment registered successfully.");
+          break;
+        case 2:
+          break;
+        default:
+            System.out.println("\n\nInvalid option!!\n\n");
+            payment(account);
+            break;
+        }
+      }
+      catch(InputMismatchException e) {
+        System.out.println("\n\nInvalid option!!\n\n");
+        payment(account);
+      }
     }
+    catch(NullPointerException e) {
+      System.out.println("\nNothing was found\n");
+    }
+    
+    
+    
 
   }
 
@@ -234,10 +279,16 @@ public class Utils {
     System.out.println("Enter the project's Id you want to check status: ");
     id = input.nextLine();
 
-    for (Project project : account.getProjects()) 
-      if (project.getId().equals(id)) projectStatus = project.getStatus();
+    try {
+      for (Project project : account.getProjects()) 
+        if (project.getId().equals(id)) projectStatus = project.getStatus();
     
-    System.out.printf("%nStatus: %s%n", projectStatus);
+      System.out.printf("%nStatus: %s%n", projectStatus);
+    }
+    catch(NullPointerException e) {
+      System.out.println("\nNothing was found\n");
+    }
+    
   }
 
   public void status(Account account, User user) {
@@ -281,6 +332,9 @@ public class Utils {
                   }
                 }
                 else System.out.println("\nSorry, the project is not in progress.");
+                break;
+              default:
+                System.out.println("\n\nInvalid option!!\n\n");
                 break;
             }
           }
@@ -344,7 +398,7 @@ public class Utils {
 
     System.out.println("\nEnter the User Username you want to consult: ");
     username = input.nextLine();
-
+    
     for (User user: account.getUsers())
       if (user.getUsername().equals(username)) wantedUser = user;
     
@@ -361,11 +415,15 @@ public class Utils {
     System.out.println("Enter the Project Id you want to consult: ");
     id = input.nextLine();
 
-    for (Project project : account.getProjects())
-      if (project.getId().equals(id)) wantedProject = project;
-    
-    if (wantedProject != null) System.out.println(wantedProject.getAllInfo());
-    else System.out.println("\nSorry, this project was not found.\n");
+    try {
+      for (Project project : account.getProjects())
+        if (project.getId().equals(id)) wantedProject = project;
+      
+      System.out.println(wantedProject.getAllInfo());
+    }
+    catch(NullPointerException e) {
+      System.out.println("\nNothing was found\n");
+    }
   }
 
   public void activityInformation(Account account) {
@@ -377,11 +435,14 @@ public class Utils {
     System.out.println("Enter the Activity Id you want to consult: ");
     id = input.nextLine();
 
-    for (Activities activity : account.getActivities()) 
-      if(activity.getId().equals(id)) wantedActivity = activity;
-    
-    if (wantedActivity != null) System.out.println(wantedActivity.getAllInfo());
-    else System.out.println("\nSorry, this activity was not found.\n");
+    try {
+      for (Activities activity : account.getActivities()) 
+        if(activity.getId().equals(id)) wantedActivity = activity;
+      System.out.println(wantedActivity.getAllInfo());
+    }
+    catch(NullPointerException e) {
+      System.out.println("\nSorry, this activity was not found.\n");
+    }
   }
 
   public void addNewUser(Account account) {
@@ -410,22 +471,33 @@ public class Utils {
     int optionUserType = input.nextInt();
     input.nextLine();
 
-    switch (optionUserType) {
+    try {
+      switch (optionUserType) {
       case 1:
         String degree = null;
         int degreeOption;
         System.out.println("Select your degree level:\n[1] Undergraduate Degree.\n[2] Master Degree.\n[3] PhD.");
         degreeOption = input.nextInt();
-        switch(degreeOption) {
-          case 1:
-            degree = "Undergraduate Degree";
-            break;
-          case 2:
-            degree = "Master Degree";
-            break;
-          case 3:
-            degree = "PhD";
-            break;
+        try {
+          switch(degreeOption) {
+            case 1:
+              degree = "Undergraduate Degree";
+              break;
+            case 2:
+              degree = "Master Degree";
+              break;
+            case 3:
+              degree = "PhD";
+              break;
+            default:
+              System.out.println("\n\nInvalid option!!\n\n");
+              addNewUser(account);
+              break;
+          }
+        }
+        catch (InputMismatchException e) {
+          System.out.println("\n\nInvalid option!!\n\n");
+          addNewUser(account);
         }
         user = new Student(firstName, lastName, username, password, degree);
         break;
@@ -444,23 +516,43 @@ public class Utils {
         String type = null;
         System.out.println("Enter the type of profissional you are:\n[1] Developer.\n[2] Tester.\n[3] Analyst.");
         typeOption = input.nextInt();
-        switch(typeOption) {
-          case 1:
-            type = "Developer";
-            break;
-          case 2:
-            type = "Tester";
-            break;
-          case 3:
-            type = "Analyst";
-            break;
-        }
+        try {
+          switch(typeOption) {
+            case 1:
+              type = "Developer";
+              break;
+            case 2:
+              type = "Tester";
+              break;
+            case 3:
+              type = "Analyst";
+              break;
+            default:
+              System.out.println("\n\nInvalid option!!\n\n");
+              addNewUser(account);
+              break;
+          }
         user = new Profissional(firstName, lastName, username, password, type);
         break;
+        }
+        catch (InputMismatchException e) {
+          System.out.println("\n\nInvalid option!!\n\n");
+          addNewUser(account);
+        }
+      default:
+        System.out.println("\n\nInvalid option!!\n\n");
+        addNewUser(account);
+        break;
+      }
+    }
+    catch (InputMismatchException e) {
+      System.out.println("\n\nInvalid option!!\n\n");
+      addNewUser(account);
     }
 
     System.out.println("Enter projects you are envolved: ");
     int option = 12;
+
     while(option!=0) {
       System.out.println("[0] Exit.\n[1] Add a project.");
       option = input.nextInt();
@@ -479,12 +571,16 @@ public class Utils {
           }
           else System.out.println("\nThis Id was not found. Please enter a valid Id.\n");
           break;
+        default:
+          System.out.println("\n\nInvalid option!!\n\n");
+          break;
       }
     }
     user.setProjectsEnvolved(projectsEnvolved);
 
     System.out.println("Enter activities you are envolved: ");
     int option2 = 12;
+
     while(option2!=0) {
       System.out.println("[0] Exit.");
       System.out.println("[1] Add an activity.");
@@ -504,10 +600,12 @@ public class Utils {
           }
           else System.out.println("\nThis Id was not found. Please enter a valid Id.\n");
           break;
+        default:
+          System.out.println("\n\nInvalid option!!\n\n");
+          break;
       }
     }
     user.setActivitiesEnvolved(activitiesEnvolved);
-
     users = account.getUsers();
     users.add(user);
     account.setUser(users);
@@ -572,6 +670,9 @@ public class Utils {
             }
             else System.out.println("\nThis Id was not found. Please enter a valid Id.\n");
             break;
+          default:
+            System.out.println("\n\nInvalid option!!\n\n");
+            break;
         }
       }
       currentUser.setProjectsEnvolved(projectsEnvolved);
@@ -596,6 +697,9 @@ public class Utils {
               System.out.println("\nActivity added successfully.\n");
             }
             else System.out.println("\nThis Id was not found. Please enter a valid Id.\n");
+            break;
+          default:
+            System.out.println("\n\nInvalid option!!\n\n");
             break;
         }
       }
@@ -649,6 +753,9 @@ public class Utils {
             System.out.println("User added successfully.");
           }
           else System.out.println("\nThis username was not found. Please enter a valid username.\n");
+          break;
+        default:
+          System.out.println("\n\nInvalid option!!\n\n");
           break;
       }
     }
@@ -723,6 +830,9 @@ public class Utils {
           }
           else System.out.println("\nThis username was not found. Please enter a valid username.\n");
           break;
+        default:
+          System.out.println("\n\nInvalid option!!\n\n");
+          break;
       }
     }
     currentActivity.setMembers(members);
@@ -766,7 +876,11 @@ public class Utils {
       }
     }
 
-    if (coordinator == null) System.out.println("Username not found.");
+    if (coordinator == null) {
+      System.out.println("Username not found.");
+      addNewProject(account);
+    }
+    
 
     System.out.println("Enter the usernames to add members: ");
     int option = 12;
@@ -788,6 +902,9 @@ public class Utils {
             System.out.println("User added successfully.");
           }
           else System.out.println("\nThis username was not found. Please enter a valid username.\n");
+          break;
+        default:
+          System.out.println("\n\nInvalid option!!\n\n");
           break;
       }
     }
@@ -812,6 +929,9 @@ public class Utils {
             System.out.println("Activity added successfully.");
           }
           else System.out.println("\nThis activity was not found. Please enter a valid Id.\n");
+          break;
+        default:
+          System.out.println("\n\nInvalid option!!\n\n");
           break;
       }
     }
@@ -896,7 +1016,10 @@ public class Utils {
       }
     }
 
-    if (coordinator == null) System.out.println("Username not found.");
+    if (coordinator == null) {
+      System.out.println("Username not found.");
+      updateProject(account);
+    } 
     currentProject.setCoordinator(coordinator);
 
     System.out.println("Enter the usernames to add members: ");
@@ -919,6 +1042,9 @@ public class Utils {
             System.out.println("User added successfully.");
           }
           else System.out.println("\nThis username was not found. Please enter a valid username.\n");
+          break;
+        default:
+          System.out.println("\n\nInvalid option!!\n\n");
           break;
       }
     }
