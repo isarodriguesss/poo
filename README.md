@@ -14,7 +14,13 @@ Analisado os code smells (apenas análise).
 
 Smells simples resolvidos:
 
-Generative especulation -> construtores feitos em várias classes, inclusive na nossa classe principal Account, e os mesmos nunca foram utilizados. Todos foram removidos.
+Speculative Generality -> construtores feitos em várias classes, inclusive na nossa classe principal Account, e os mesmos nunca foram utilizados. Todos foram removidos.
 
-Data Class -> quantidade numerosa de métodos na classe App; | Corrigido com as classes utils|
+Duplicated Code -> classes abstratas com métodos que sofrem override e corrige a duplicidade de código.
+
+Long Method -> corrigido com uso de exceptions.
+
+Large Class -> classe Utils com grande quantidade de métodos, isso foi subdividido e resolvido.
+
+Data Class -> quantidade numerosa de métodos na classe App; | Corrigido com as classes utils.
 
