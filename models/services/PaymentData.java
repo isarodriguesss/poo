@@ -1,3 +1,5 @@
+package models.services;
+
 public class PaymentData {
 
   private double amount;

@@ -1,4 +1,9 @@
+package models;
+
 import java.util.ArrayList;
+import models.User;
+import models.Project;
+import models.Activities;
 
 public class Account {
 

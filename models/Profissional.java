@@ -1,3 +1,5 @@
+package models;
+
 public class Profissional extends User{
 
   private String type;

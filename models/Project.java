@@ -1,5 +1,9 @@
+package models;
+
 import java.util.ArrayList;
 import java.lang.reflect.Field;
+import models.User;
+import models.services.PaymentData;
 
 public class Project {
 

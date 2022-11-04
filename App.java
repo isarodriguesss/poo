@@ -1,10 +1,13 @@
+import models.Account;
+import utils.Menu;
+
 public class App {
 
-  public static void main(String[] args) {
+  public static void main(String[] args){
 
     Account account = new Account();
-    Utils utils = new Utils();
+    Menu menu = new Menu();
 
-    utils.menu(account);
+    Menu.menu(account);
   }
 }
