@@ -32,8 +32,9 @@ Resolvendo nosso problema da large class de operações com mais de 700 linhas, 
 
 O padrão de projeto Bridge divide a lógica de negócio ou uma enorme classe (nosso caso) em hierarquias de classe separadas que podem ser desenvolvidas independentemente. Uma dessas (as subclasses com as operações) obterá uma referência a um objeto da segunda hierarquia, agora nossas funções estão dentro das novas classes:
 
-OpAccount,
-OpCommunity,
-OpFeed;
+Professor,
+Profissional,
+Researcher,
+Student;
 Facilitando manutenção, legibilidade e resolvendo o nosso code smell. O foco foi separar nossa large class em classes menores que se relacionam mais entre si. Foi criado também uma nova classe GeneralOps, que será nossa "Ponte (Bridge)", com funções gerais de busca e checagens que serviram pra todas as nossas classes filhas de operações que herdam as operações gerais.
 
