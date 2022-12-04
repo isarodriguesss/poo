@@ -38,3 +38,7 @@ Researcher,
 Student;
 Facilitando manutenção, legibilidade e resolvendo o nosso code smell. O foco foi separar nossa large class em classes menores que se relacionam mais entre si. Foi criado também uma nova classe GeneralOps, que será nossa "Ponte (Bridge)", com funções gerais de busca e checagens que serviram pra todas as nossas classes filhas de operações que herdam as operações gerais.
 
+Strategy:
+
+Foi aplicado o Design Pattern Strategy para solucionar um code smell da classe UserController e ProjectController, executando a criação de projetos, usuários e login do sistema, mas também alteram o comportamento do formulário de cada classe, fornecendo campos apropriados para registrar os detalhes do registro.
+
