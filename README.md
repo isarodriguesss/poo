@@ -42,3 +42,10 @@ Strategy:
 
 Foi aplicado o Design Pattern Strategy para solucionar um code smell da classe UserController e ProjectController, executando a criação de projetos, usuários e login do sistema, mas também alteram o comportamento do formulário de cada classe, fornecendo campos apropriados para registrar os detalhes do registro.
 
+Padrão Builder
+
+Utilizado para resolver nosso smell de código duplicado encontrado na nossa função de criar um objeto de conta e definir seus atributos, o padrão builder tem como objetivo eliminar a complexidade na criação de objetos e também deixar esse processo mais intuitivo.
+
+Extract Method:
+
+Métodos muito grandes fazendo mais do que deveriam foram refeitos em métodos menores.
