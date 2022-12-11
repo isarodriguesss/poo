@@ -26,25 +26,13 @@ Data Class -> quantidade numerosa de métodos na classe App; | Corrigido com as 
 
 ## Refactoring
 
-Padrão Bridge:
+Observer
 
-Resolvendo nosso problema da large class de operações com mais de 700 linhas, resolvemos utilizar subclasses que se relacionariam mais com as funções de cada tipo, conta, comunidade e feed, e não deixando essas funções numa única classe gerenciando todas as operações do projeto.
+Foi adiconado um mecanismo de assinatura para notificar os usuários quando o status de um projeto for alterado.
 
-O padrão de projeto Bridge divide a lógica de negócio ou uma enorme classe (nosso caso) em hierarquias de classe separadas que podem ser desenvolvidas independentemente. Uma dessas (as subclasses com as operações) obterá uma referência a um objeto da segunda hierarquia, agora nossas funções estão dentro das novas classes:
+Factory Method
 
-Professor,
-Profissional,
-Researcher,
-Student;
-Facilitando manutenção, legibilidade e resolvendo o nosso code smell. O foco foi separar nossa large class em classes menores que se relacionam mais entre si. Foi criado também uma nova classe GeneralOps, que será nossa "Ponte (Bridge)", com funções gerais de busca e checagens que serviram pra todas as nossas classes filhas de operações que herdam as operações gerais.
-
-Strategy:
-
-Foi aplicado o Design Pattern Strategy para solucionar um code smell da classe UserController e ProjectController, executando a criação de projetos, usuários e login do sistema, mas também alteram o comportamento do formulário de cada classe, fornecendo campos apropriados para registrar os detalhes do registro.
-
-Padrão Builder
-
-Utilizado para resolver nosso smell de código duplicado encontrado na nossa função de criar um objeto de conta e definir seus atributos, o padrão builder tem como objetivo eliminar a complexidade na criação de objetos e também deixar esse processo mais intuitivo.
+Utilizado para eliminar o smell de condicionais em cadeia, usamos esse padrão para poder criar tipos diferentes de usuário
 
 Extract Method:
 
