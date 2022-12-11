@@ -22,6 +22,10 @@ public class User {
     this.activitiesEnvolved = new ArrayList<Activities>();
   }
 
+  public void recebeNotificao(String status){
+    System.out.println("Usuario: " + this.firstName + " recebeu a notificação da alteração do status para " + status);
+  }
+
   public String getUsername() {
     return username;
   }

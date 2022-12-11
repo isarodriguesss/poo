@@ -18,6 +18,7 @@ public class Project {
   private String duringAt;
   private String status;
   private ArrayList<PaymentData> payment;
+  private ArrayList<User> usuarios;
 
   public Project(String id, String description, String startAt, String endAt, User coordinator, 
   ArrayList<User> members, ArrayList<Activities> activities, double schoolarAmount, String duringAt) {
@@ -32,6 +33,13 @@ public class Project {
     this.duringAt = duringAt;
     this.status = "Em processo de criacao";
     this.payment = new ArrayList<PaymentData>();
+    this.usuarios = new ArrayList<User>();
+  }
+
+  public void notificarUsuarios() {
+    for (User user : this.usuarios){
+      user.recebeNotificao(this.status);
+    }
   }
 
   public void setPayment(ArrayList<PaymentData> payment) {
