@@ -1,8 +1,6 @@
 package models;
 
 import java.util.ArrayList;
-import models.Project;
-import models.Activities;
 
 public class User {
 

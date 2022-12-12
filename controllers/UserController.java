@@ -7,23 +7,16 @@ import java.util.InputMismatchException;
 import models.Account;
 import models.Project;
 import models.User;
+import models.UserFactory;
+import views.Menu;
 import models.Activities;
-import models.Reseacher;
-import models.Professor;
-import models.Student;
-import models.Profissional;
-import controllers.ActivityController;
-import controllers.ProjectController;
-import controllers.SystemController;
-import utils.Menu;
 
 public class UserController {
 
   public static void login(Account account) {
     Scanner input = new Scanner(System.in);
 
-    String firstName, lastName, username, password;
-    ArrayList<User> users = new ArrayList<User>();
+    String username, password;
 
     User currentUser = null;
 
@@ -63,6 +56,7 @@ public class UserController {
     ArrayList<Project> projectsEnvolved = new ArrayList<Project>();
     ArrayList<Activities> activitiesEnvolved = new ArrayList<Activities>();
     User user = null;
+    String tipo_usuario = "";
 
     System.out.println("\nEnter your first name: ");
     firstName = input.nextLine();
@@ -77,78 +71,33 @@ public class UserController {
     password = input.nextLine();
 
     System.out.println("Enter what type of user fits you: ");
-    System.out.println("[1] Student.\n[2] Professor.\n[3] Reseacher\n[4] Profissional: ");
+    System.out.println("[1] Graduating.\n[2] Master.\n[3] Doctor.\n[4] Professor.\n[5] Researcher.\n[6] Profissional.\n[7] Technician. ");
     int optionUserType = input.nextInt();
     input.nextLine();
 
     try {
       switch (optionUserType) {
       case 1:
-        String degree = null;
-        int degreeOption;
-        System.out.println("Select your degree level:\n[1] Undergraduate Degree.\n[2] Master Degree.\n[3] PhD.");
-        degreeOption = input.nextInt();
-        try {
-          switch(degreeOption) {
-            case 1:
-              degree = "Undergraduate Degree";
-              break;
-            case 2:
-              degree = "Master Degree";
-              break;
-            case 3:
-              degree = "PhD";
-              break;
-            default:
-              System.out.println("\n\nInvalid option!!\n\n");
-              addNewUser(account);
-              break;
-          }
-        }
-        catch (InputMismatchException e) {
-          System.out.println("\n\nInvalid option!!\n\n");
-          addNewUser(account);
-        }
-        user = new Student(firstName, lastName, username, password, degree);
+        tipo_usuario = "Graduating";
         break;
       case 2:
-        System.out.println("Enter subject you lesson: ");
-        String subject = input.nextLine();
-        user = new Professor(firstName, lastName, username, password, subject);
+        tipo_usuario = "Master";
         break;
       case 3:
-        System.out.println("Enter the subject of you reseach: ");
-        String subjectR = input.nextLine();
-        user = new Reseacher(firstName, lastName, username, password, subjectR);
+        tipo_usuario = "Doctor";
         break;
       case 4:
-        int typeOption;
-        String type = null;
-        System.out.println("Enter the type of profissional you are:\n[1] Developer.\n[2] Tester.\n[3] Analyst.");
-        typeOption = input.nextInt();
-        try {
-          switch(typeOption) {
-            case 1:
-              type = "Developer";
-              break;
-            case 2:
-              type = "Tester";
-              break;
-            case 3:
-              type = "Analyst";
-              break;
-            default:
-              System.out.println("\n\nInvalid option!!\n\n");
-              addNewUser(account);
-              break;
-          }
-        user = new Profissional(firstName, lastName, username, password, type);
+        tipo_usuario = "Professor";
         break;
-        }
-        catch (InputMismatchException e) {
-          System.out.println("\n\nInvalid option!!\n\n");
-          addNewUser(account);
-        }
+      case 5:
+        tipo_usuario = "Researcher";
+        break;
+      case 6:
+        tipo_usuario = "Profissional";
+        break;
+      case 7:
+        tipo_usuario = "Technician";
+        break;
       default:
         System.out.println("\n\nInvalid option!!\n\n");
         addNewUser(account);
@@ -186,6 +135,7 @@ public class UserController {
           break;
       }
     }
+    user = UserFactory.getUsuario(tipo_usuario, firstName, lastName, username, password);
     user.setProjectsEnvolved(projectsEnvolved);
 
     System.out.println("Enter activities you are envolved: ");
@@ -242,7 +192,6 @@ public class UserController {
     Scanner input = new Scanner(System.in);
 
     String firstName, lastName, username, password, projectId, activityId;
-    ArrayList<User> users = new ArrayList<User>();
     ArrayList<Project> projectsEnvolved = new ArrayList<Project>();
     ArrayList<Activities> activitiesEnvolved = new ArrayList<Activities>();
 
