@@ -1,14 +1,10 @@
 package controllers;
 
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import models.Account;
 import models.Project;
-import models.User;
-import models.Activities;
-import controllers.UserController;
 
 public class PaymentController {
 

@@ -1,21 +1,11 @@
 package views;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-import controllers.ProjectController;
-import controllers.ActivityController;
 import controllers.UserController;
-import controllers.PaymentController;
-import models.User;
+
 import models.Account;
-import models.Project;
-import models.Activities;
-import models.Reseacher;
-import models.Professor;
-import models.Student;
-import models.Profissional;
 
 public class Menu {
 

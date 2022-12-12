@@ -9,10 +9,6 @@ import models.User;
 import models.Activities;
 import models.Reseacher;
 import models.Professor;
-import models.Student;
-import models.Profissional;
-import controllers.UserController;
-import controllers.ActivityController;
 
 public class ProjectController {
 
@@ -44,7 +40,10 @@ public class ProjectController {
       if (user.getUsername().equals(coordinatorUsername)) {
         coordinator = user;
         if (user instanceof Professor | user instanceof Reseacher) coordinator = user;
-        else System.out.println("This user is not allowed to be a coordinator of the project.");
+        else {
+          System.out.println("\nThis user is not allowed to be a coordinator of the project.");
+          addNewProject(account);
+        }
       }
     }
 

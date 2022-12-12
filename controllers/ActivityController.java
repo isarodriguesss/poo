@@ -4,10 +4,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 import models.Account;
-import models.Project;
 import models.User;
 import models.Activities;
-import controllers.UserController;
 
 public class ActivityController {
 
