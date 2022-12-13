@@ -1,8 +1,10 @@
 package models;
 
 import java.util.ArrayList;
+
+import controllers.services.PaymentData;
+
 import java.lang.reflect.Field;
-import models.services.PaymentData;
 
 public class Project {
 
